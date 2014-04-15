@@ -34,7 +34,7 @@ Functions:
 name="" # For functions with return values
 
 # Description of the function
-# return-value name [--options] required-arguments [optional-arguments]
+# return-value name [--options] required-arguments [optional-arguments] (Optional)
 function name() {
 code
 name=return-value
