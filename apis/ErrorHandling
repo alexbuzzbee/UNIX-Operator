@@ -1,0 +1,74 @@
+#!/bin/bash
+#UNIX Operator development version, simple menu-based interface for UNIX systems.
+#Copyright (C) 2014  Alex Martin
+
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#(at your option) any later version.
+
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+
+#You should have received a copy of the GNU General Public License
+#along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#Minor error. Syntax: ErrorHandling.error "programName" errorCode "errorCodeDescription"
+function ErrorHandling.error()
+{
+  clear
+  echo "An error has occurred."
+  echo "Files or data may be lost or damaged."
+  local selection="0"
+  PS3="Make your selection[1,2]: "
+  local options=("Details" "Back")
+  select selection in "${options[@]}"
+  do
+    case $selection in
+      "Details")
+        echo "Error code $2 in program $1."
+        echo "Description of error: $3"
+        break
+      ;;
+        "Back")
+        clear
+        break
+      ;;
+      *)
+        clear
+        break
+      ;;
+    esac
+  done
+}
+
+#A fatal error that will cause the program to crash. Syntax: ErrorHandling.fatalError "programName" errorCode "errorCodeDescription"
+function ErrorHandling.fatalError()
+{
+  clear
+  echo "A fatal error has occurred."
+  echo "The running program will quit."
+  local selection="0"
+  PS3="Make your selection[1,2]: "
+  local options=("Details" "Back")
+  select selection in "${options[@]}"
+  do
+    case $selection in
+      "Details")
+       echo "Error code $2 in program $1."
+       echo "Description of error: $3"
+        break
+      ;;
+      "Back")
+        clear
+        break
+      ;;
+     *)
+       clear
+        break
+      ;;
+    esac
+  done
+}

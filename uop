@@ -1,0 +1,233 @@
+#!/bin/bash
+#UNIX Operator development version, simple menu-based interface for UNIX systems.
+#Copyright (C) 2014  Alex Martin
+
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#(at your option) any later version.
+
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+
+#You should have received a copy of the GNU General Public License
+#along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+source ~/.uop/apis/ErrorHandling
+
+function applyUpdate()
+{
+  if test -f ~/.uop/update/version
+  then
+    source ~/.uop/update/version
+    local updateVersion=$uopVersion
+    local updatePostfix=$uopVersionPostfix
+    source ~/.uop/version
+    local updateConfirm="y"
+    echo -n "Update version $uopVersion-$uopVersionPostfix to $updateVersion-$updatePostfix[Y,n]? "
+    read updateConfirm
+    if test $updateConfirm = "y"
+    then
+      cp -Rv ~/.uop/update/*/ ~/.uop
+      rm -rv ~/.uop/update/*
+      echo "Update complete. Please quit UNIX Operator."
+    fi
+  fi
+}
+
+
+function startup()
+{
+  clear
+  applyUpdate
+  echo "UOP startup"
+  local selection=""
+  PS3="Make your selection[1,2]: "
+  local options=("Remote session" "Local session" "Help")
+  select selection in "${options[@]}"
+  do
+    case $selection in
+    "Remote session")
+      echo "Setting up remote session..."
+      echo "Configuring X11 display..."
+      if $DISPLAY != "localhost:10.0"
+      then
+        export DISPLAY="localhost:10.0"
+      fi
+      sleep 3
+      break
+    ;;
+    "Local session")
+      echo "Setting up local session..."
+      sleep 3
+      break
+    ;;
+    "Help")
+      UOPHelp
+      break
+    ;;
+    *)
+      UOPHelp
+      break
+    ;;
+    esac
+  done
+}
+
+function mainMenu()
+{
+  clear
+  echo "UOP Main Menu"
+  local selection=""
+  PS3="Make your selection[1,2,3,4]: "
+  local options=("Help" "About" "Applications >" "Exit to shell")
+  select selection in "${options[@]}"
+  do
+    case $selection in
+      "Help")
+        UOPHelp
+        break
+      ;;
+      "About")
+        UOPAbout
+        break
+      ;;
+      "Applications >")
+        apps
+        break
+      ;;
+      "Exit to shell")
+        shutdown
+        break
+      ;;
+      *)
+       UOPHelp
+      ;;
+    esac
+  done
+}
+
+function UOPHelp()
+{
+  clear
+  echo "UOP Help"
+  echo ""
+  echo "UOP (UNIX Operator) is a menu based control system for UNIX computers."
+  echo ""
+  echo "Usage Guide"
+  echo ""
+  echo "Menu selections"
+  echo "To make a menu selection, enter the selection number of the selection you would like to make and press enter/return."
+  echo "Press enter to continue..."
+  read
+}
+
+function UOPAbout()
+{
+  clear
+  echo "About UOP"
+  echo ""
+  echo "UOP version 0.X INDEV BUILD."
+  echo "By Alex Martin and contributors."
+  echo "UNIX Operator is under the GNU General Public Licence (GPL)."
+  echo ""
+  local selection=""
+  PS3="Make your selection[1,2]: "
+  local options=("View GPL" "Back")
+  select selections in "${options[@]}"
+  do
+    case $selection in
+     "View GPL")
+       less ~/.uop/gpl-3.0.txt
+       break
+     ;;
+     "Back")
+       clear
+       break
+     ;;
+     *)
+       clear
+       break
+     ;;
+    esac
+  done
+}
+
+function apps()
+{
+  clear
+  echo "Applications"
+  echo ""
+  local selection=""
+  PS3="Make your selection[1,2,3]: "
+  local options=("UNIX Operator applications" "Command-line applications" "Back")
+  select selection in "${options[@]}"
+  do
+    case $selection in
+    "UNIX Operator applications")
+      appSelector
+      break
+    ;;
+    "Command-line applications")
+      cmdApp
+      break
+    ;;
+    "Back")
+      clear
+      break
+    ;;
+    *)
+      clear
+      break
+    ;;
+    esac
+  done
+}
+
+function cmdApp()
+{
+  clear
+  local command
+  echo "Launch command-line application"
+  echo ""
+  echo "Enter the command for the application you want to launch below."
+  echo ""
+  echo -n "Enter command/path: "
+  read command
+  clear
+  $command
+}
+
+function appSelector()
+{
+  clear
+  cd ~/.uop/programs
+  PS3="Make your selection[#,c(cancel)]: "
+  fileList=$(find . -maxdepth 1 -type f)
+  select fileName in $fileList; do
+      if [ -n "$fileName" ]; then
+        $fileName
+      fi
+      break
+  done
+}
+
+function shutdown()
+{
+  PS3=""
+  clear
+  exit 0
+}
+
+function main()
+{
+  startup
+  while true
+  do
+  mainMenu
+  done
+}
+
+main

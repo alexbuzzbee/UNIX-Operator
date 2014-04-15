@@ -1,0 +1,118 @@
+#!/bin/bash
+#UNIX Operator development version, simple menu-based interface for UNIX systems.
+#Copyright (C) 2014  Alex Martin
+
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#(at your option) any later version.
+
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+
+#You should have received a copy of the GNU General Public License
+#along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+contExec=1
+
+function drawMainMenu()
+{
+clear
+local selection=""
+PS3="Make your selection[1,2,3,4,5,6,7,8,9]: "
+local options=("Directory listing" "Change directory" "Open text file" "Create plain text file" "Make directory" "Remove file" "Remove directory" "Help" "Exit")
+echo "UOP File Manager"
+select selection in "${options[@]}"
+do
+  case $selection in
+  "Directory listing")
+    clear
+    echo "Press <enter> to close this directory listing."
+    echo -n "Directory of "
+    pwd
+    ls -la
+    read trashcan
+    break
+  ;;
+  "Change directory")
+    clear
+    echo "Change directory"
+    local dirName=""
+    PS3="Make your selection[#,c(cancel)]: "
+    local dirList=$(find . -maxdepth 1 -type d)
+    select dirName in $fileList; do
+      if [ -n "$dirName" ]; then
+        cd $dirName
+      fi
+      break
+    done
+    break
+  ;;
+  "Open text file")
+    ~/uop/programs/TextEditor
+    break
+  ;;
+  "Create plain text file")
+    echo -n "Enter name for new plain text file: "
+    read newfile
+    ~/uop/programs/TextEditor $newfile
+    break
+  ;;
+  "Make directory")
+    echo -n "Enter name for new directory: "
+    read newdir
+    mkdir $newdir
+    break
+  ;;
+  "Remove file")
+    clear
+    echo "Remove file"
+    local fileName=""
+    PS3="Make your selection[#,c(cancel)]: "
+    local fileList=$(find . -maxdepth 1 -type f)
+    select fileName in $fileList; do
+      if [ -n "$fileName" ]; then
+        rm -i $fileName
+      fi
+      break
+    done
+    break
+  ;;
+  "Remove directory")
+    clear
+    echo "Remove directory"
+    local dirName=""
+    PS3="Make your selection[#,c(cancel)]: "
+    local dirList=$(find . -maxdepth 1 -type d)
+    select dirName in $dirList; do
+      if [ -n "$dirName" ]; then
+        rm -ri $dirName
+      fi
+      break
+    done
+    break
+  ;;
+  "Help")
+    fileManagerHelp
+    break
+  ;;
+  "Exit")
+    clear
+    contExec=0
+    break
+  ;;
+  esac
+done
+}
+
+function main()
+{
+while contExec=1
+do
+drawMainMenu
+done
+}
+
+main
