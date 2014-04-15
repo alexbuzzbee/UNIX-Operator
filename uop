@@ -59,12 +59,12 @@ function startup()
       then
         export DISPLAY="localhost:10.0"
       fi
-      sleep 3
+      sleep 2
       break
     ;;
     "Local session")
       echo "Setting up local session..."
-      sleep 3
+      sleep 2
       break
     ;;
     "Help")
@@ -86,7 +86,7 @@ function mainMenu()
   echo "UOP Main Menu"
   local selection=""
   PS3="Make your selection[1,2,3,4]: "
-  local options=("Help" "About" "Applications >" "Exit to shell")
+  local options=("Help" "About >" "Applications >" "Exit to shell")
   select selection in "${options[@]}"
   do
     case $selection in
@@ -94,7 +94,7 @@ function mainMenu()
         UOPHelp
         break
       ;;
-      "About")
+      "About >")
         UOPAbout
         break
       ;;
@@ -178,7 +178,7 @@ function apps()
   select selection in "${options[@]}"
   do
     case $selection in
-    "UNIX Operator applications")
+    "UNIX Operator applications >")
       appSelector
       break
     ;;
