@@ -1,0 +1,11 @@
+UNIX Operator Credits
+A successor to the Windix project (http://windix.programmingwave.com).
+
+Concept: Alex Martin
+Core programming: Alex Martin
+
+Additional programming
+
+Alex Martin
+
+GitHub administration: Alex Martin

@@ -17,6 +17,7 @@
 
 source ~/.uop/apis/ErrorHandling
 
+# Test for and apply an update.
 function applyUpdate()
 {
   if test -f ~/.uop/update/version
@@ -33,11 +34,12 @@ function applyUpdate()
       cp -Rv ~/.uop/update/*/ ~/.uop
       rm -rv ~/.uop/update/*
       echo "Update complete. Please quit UNIX Operator."
+      # Code to quit the program
     fi
   fi
 }
 
-
+# Get UNIX Operator running.
 function startup()
 {
   clear
@@ -76,6 +78,7 @@ function startup()
   done
 }
 
+# Display the main menu, and interpret the user's selection.
 function mainMenu()
 {
   clear
@@ -109,6 +112,7 @@ function mainMenu()
   done
 }
 
+# Display basic help to the user.
 function UOPHelp()
 {
   clear
@@ -124,18 +128,20 @@ function UOPHelp()
   read
 }
 
+# Display some information about UNIX Operator
 function UOPAbout()
 {
   clear
+  source ~/.uop/version
   echo "About UOP"
   echo ""
-  echo "UOP version 0.X INDEV BUILD."
+  echo "UOP version $uopVersion-$uopVersionPostfix."
   echo "By Alex Martin and contributors."
   echo "UNIX Operator is under the GNU General Public Licence (GPL)."
   echo ""
   local selection=""
-  PS3="Make your selection[1,2]: "
-  local options=("View GPL" "Back")
+  PS3="Make your selection[1,2,3]: "
+  local options=("View GPL" "Credits" "Back")
   select selections in "${options[@]}"
   do
     case $selection in
@@ -147,6 +153,10 @@ function UOPAbout()
        clear
        break
      ;;
+     "Credits")
+       less ~/.uop/credits.txt
+       break
+     ;;
      *)
        clear
        break
@@ -155,6 +165,7 @@ function UOPAbout()
   done
 }
 
+# Let the user launch applications.
 function apps()
 {
   clear
@@ -186,6 +197,7 @@ function apps()
   done
 }
 
+# Get the command to run a command-line app.
 function cmdApp()
 {
   clear
@@ -200,6 +212,7 @@ function cmdApp()
   $command
 }
 
+# Select a UNIX Operator Application.
 function appSelector()
 {
   clear
@@ -214,6 +227,7 @@ function appSelector()
   done
 }
 
+# Shut down UNIX Operator.
 function shutdown()
 {
   PS3=""
@@ -221,6 +235,7 @@ function shutdown()
   exit 0
 }
 
+# The main function that runs when UNIX Operator starts. I know I could have this outside of a function.
 function main()
 {
   startup
@@ -230,4 +245,5 @@ function main()
   done
 }
 
+# Run main()
 main
