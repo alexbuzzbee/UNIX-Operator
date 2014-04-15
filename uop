@@ -16,6 +16,7 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 source ~/.uop/apis/ErrorHandling
+source ~/.uop/apis/Utils
 
 # Test for and apply an update.
 function applyUpdate()
@@ -33,8 +34,8 @@ function applyUpdate()
     then
       cp -Rv ~/.uop/update/*/ ~/.uop
       rm -rv ~/.uop/update/*
-      echo "Update complete. Please quit UNIX Operator."
-      # Code to quit the program
+      echo "Update complete. Quitting..."
+      shutdown
     fi
   fi
 }
@@ -142,19 +143,19 @@ function UOPAbout()
   local selection=""
   PS3="Make your selection[1,2,3]: "
   local options=("View GPL" "Credits" "Back")
-  select selections in "${options[@]}"
+  select selection in "${options[@]}"
   do
     case $selection in
      "View GPL")
        less ~/.uop/gpl-3.0.txt
        break
      ;;
-     "Back")
-       clear
-       break
-     ;;
      "Credits")
        less ~/.uop/credits.txt
+       break
+     ;;
+     "Back")
+       clear
        break
      ;;
      *)
@@ -225,14 +226,6 @@ function appSelector()
       fi
       break
   done
-}
-
-# Shut down UNIX Operator.
-function shutdown()
-{
-  PS3=""
-  clear
-  exit 0
 }
 
 # The main function that runs when UNIX Operator starts. I know I could have this outside of a function.

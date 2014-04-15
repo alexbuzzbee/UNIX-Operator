@@ -15,5 +15,18 @@
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-uopVersion="0.1"
-uopVersionPostfix="dev"
+# API containing utility functions
+
+# Display the message "Press enter to continue..." and wait for the user to press enter
+function hold() {
+  echo "Press enter to continue..."
+  read
+}
+
+# Shut down UNIX Operator.
+function shutdown() {
+  PS3=""
+  clear
+  killall $0
+  exit 0
+}

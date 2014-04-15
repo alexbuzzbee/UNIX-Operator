@@ -59,7 +59,7 @@ function doInstall()
   mkdir -v ~/.uop ~/.uop/apis ~/.uop/install ~/.uop/update ~/.uop/programs
   sleep 3
   echo "Copying files..."
-  cp -v ./gpl-3.0.txt ./uop ./version ./installer.sh ~/.uop
+  cp -v ./gpl-3.0.txt ./credits.txt ./uop ./version ./installer.sh ~/.uop
   cp -v ./apis/* ~/.uop/apis
   cp -v ./programs/* ~/.uop/programs
   sleep 3
