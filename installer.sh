@@ -63,10 +63,12 @@ function doInstall()
   cp -v ./apis/* ~/.uop/apis
   cp -v ./programs/* ~/.uop/programs
   sleep 3
+  echo "Backing up config files..."
+  cp ~/.bashrc ~/.bashrc.old
+  cp ~/.bash_profile ~/.bash_profile.old
   echo "Configuring .bash_profile to source .bashrc(don't worry if you don't know what this means)..."
   echo "source ~/.bashrc" >> ~/.bash_profile
   echo "Configuring .bashrc to add ~/.uop to the path..."
-  cp ~/.bashrc ~/.bashrc.old
   echo "PATH=\"\$PATH:\$HOME/.uop\"" >> ~/.bashrc
   sleep 3
   echo "Checking if successful..."
@@ -125,9 +127,11 @@ function doUninstall()
   echo "Removing ~/.uop..."
   rm -rv ~/.uop
   sleep 3
-  echo "Restoring .bashrc..."
+  echo "Restoring config files..."
   rm -v ~/.bashrc
   mv -v ~/.bashrc.old ~/.bashrc
+  rm -v ~/.bash_profile
+  mv -v ~/.bash_profile.old ~/.bash_profile
   sleep 3
 }
 
@@ -140,7 +144,7 @@ function startUninstall()
   testForExistingInstall
   if test $testForExistingInstall = "true"
   then
-    echo -n "Confirm uninstall of UNIX Operator version $uopVersion-$uopVersionPostfix(this will remove ~/.uop and all it's contents, including programs.)[y,N]? "
+    echo -n "Confirm uninstall of UNIX Operator version $uopVersion-$uopVersionPostfix (this will remove ~/.uop and all it's contents, including programs, as well as restoring .bashrc.old and .bash_profile.old. Please make sure these files are correct.)[y,N]? "
     read confirm1
     if test $confirm1 = "y"
     then
