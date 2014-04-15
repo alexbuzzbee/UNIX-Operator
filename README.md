@@ -33,6 +33,7 @@ Functions:
 name="" \# For functions with return values
 
 \# Description of the function
+
 \# return-value name [--options] required-arguments [optional-arguments]
 function name() {
 code
