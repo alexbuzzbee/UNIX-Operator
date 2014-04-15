@@ -37,14 +37,14 @@ function doUpdate()
   cd "$SCRIPTDIR"
   echo "Creating directory structure in update directory..."
   mkdir -v ~/.uop/update/apis ~/.uop/update/programs
-  sleep 3
+  sleep 2
   echo "Copying files..."
   cp -v ./gpl-3.0.txt ./uop ./version ./installer.sh ~/.uop/update
   cp -v ./apis/* ~/.uop/update/apis
   cp -v ./programs/* ~/.uop/update/programs
-  sleep 3
+  sleep 2
   echo "Launching UNIX Operator to finish update(Please quit UNIX Operator after menu opens)..."
-  sleep 3
+  sleep 2
   uop
 }
 
@@ -54,15 +54,15 @@ function doInstall()
 {
   cd "$SCRIPTDIR"
   echo "Performing installation..."
-  sleep 3
+  sleep 2
   echo "Creating directory structure..."
   mkdir -v ~/.uop ~/.uop/apis ~/.uop/install ~/.uop/update ~/.uop/programs
-  sleep 3
+  sleep 2
   echo "Copying files..."
   cp -v ./gpl-3.0.txt ./credits.txt ./uop ./version ./installer.sh ~/.uop
   cp -v ./apis/* ~/.uop/apis
   cp -v ./programs/* ~/.uop/programs
-  sleep 3
+  sleep 2
   echo "Backing up config files..."
   cp ~/.bashrc ~/.bashrc.old
   cp ~/.bash_profile ~/.bash_profile.old
@@ -70,15 +70,15 @@ function doInstall()
   echo "source ~/.bashrc" >> ~/.bash_profile
   echo "Configuring .bashrc to add ~/.uop to the path..."
   echo "PATH=\"\$PATH:\$HOME/.uop\"" >> ~/.bashrc
-  sleep 3
+  sleep 2
   echo "Checking if successful..."
   if test -d ~/.uop -a -f ~/.uop/uop -a -f ~/.uop/apis/ErrorHandling -a -f ~/.uop/programs/TextEditor
   then
     echo "Installation complete!"
-    sleep 3
+    sleep 2
   else
     echo "Error: Installation failed! Maybe mkdir or cp doesen't support multiple operands?" >&2
-    sleep 3
+    sleep 2
   fi
 }
 
@@ -126,13 +126,13 @@ function doUninstall()
   echo "Performing uninstall..."
   echo "Removing ~/.uop..."
   rm -rv ~/.uop
-  sleep 3
+  sleep 2
   echo "Restoring config files..."
   rm -v ~/.bashrc
   mv -v ~/.bashrc.old ~/.bashrc
   rm -v ~/.bash_profile
   mv -v ~/.bash_profile.old ~/.bash_profile
-  sleep 3
+  sleep 2
 }
 
 # Start uninstalling UNIX Operator

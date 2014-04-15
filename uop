@@ -19,8 +19,7 @@ source ~/.uop/apis/ErrorHandling
 source ~/.uop/apis/Utils
 
 # Test for and apply an update.
-function applyUpdate()
-{
+function applyUpdate() {
   if test -f ~/.uop/update/version
   then
     source ~/.uop/update/version
@@ -32,11 +31,31 @@ function applyUpdate()
     read updateConfirm
     if test $updateConfirm = "y"
     then
-      cp -Rv ~/.uop/update/*/ ~/.uop
+      cp -Rv ~/.uop/update/* ~/.uop
       rm -rv ~/.uop/update/*
       echo "Update complete. Quitting..."
       shutdown
     fi
+  fi
+}
+
+# Install a program from the install directory. !EXPERIMENTAL!
+function installProgram() {
+  if test -f ~/.uop/install/preinstall.sh -o -f ~/.uop/install/postinstall.sh
+    then
+    echo "Running pre-install script..."
+    bash ~/.uop/install/preinstall.sh
+    echo "Removing pre-install script..."
+    rm -v ~/.uop/install/preinstall.sh
+    echo "Copying files..."
+    cp -v ~/.uop/install/* ~/.uop/programs
+    echo "Running post-install script..."
+    bash ~/.uop/install/postinstall.sh
+    echo "Removing files..."
+    rm -v ~/.uop/install/*
+    echo "Removing post-install script..."
+    rm -v ~/.uop/programs/postinstall.sh
+    sleep 2
   fi
 }
 
@@ -45,6 +64,7 @@ function startup()
 {
   clear
   applyUpdate
+  installProgram
   echo "UOP startup"
   local selection=""
   PS3="Make your selection[1,2]: "
