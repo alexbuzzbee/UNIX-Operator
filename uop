@@ -39,7 +39,7 @@ function applyUpdate() {
   fi
 }
 
-# Install a program from the install directory. !EXPERIMENTAL!
+# Install a program from the install directory.
 function installProgram() {
   if test -f ~/.uop/install/preinstall.sh -o -f ~/.uop/install/postinstall.sh
     then
@@ -236,16 +236,22 @@ function cmdApp()
 # Select a UNIX Operator Application.
 function appSelector()
 {
+  workingDir=${pwd}
   clear
   cd ~/.uop/programs
+  local fileName=""
   PS3="Make your selection[#,c(cancel)]: "
-  fileList=$(find . -maxdepth 1 -type f)
-  select fileName in $fileList; do
-      if [ -n "$fileName" ]; then
+  local fileList=$(find . -maxdepth 1 -type f)
+  select fileName in "${fileList[@]}"; do
+      if test -f "$fileName"; then
         $fileName
+      else
+        echo "uop: No such file or directory" >&2
+        sleep 2
       fi
       break
   done
+  cd $workingDir
 }
 
 # The main function that runs when UNIX Operator starts. I know I could have this outside of a function.

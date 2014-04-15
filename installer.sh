@@ -77,7 +77,7 @@ function doInstall()
     echo "Installation complete!"
     sleep 2
   else
-    echo "Error: Installation failed! Maybe mkdir or cp doesen't support multiple operands?" >&2
+    echo "installer.sh: Installation failed! Maybe mkdir or cp doesen't support multiple operands?" >&2
     sleep 2
   fi
 }
@@ -156,7 +156,7 @@ function startUninstall()
       fi
     fi
   else
-    echo "Error: No existing install to remove!" >&2
+    echo "installer.sh: No existing install to remove!" >&2
   fi
 }
 
