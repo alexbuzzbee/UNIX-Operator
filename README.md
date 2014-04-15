@@ -26,14 +26,14 @@ Style information
 
 Comments:
 
-# Information.
+\# Information.
 
 Functions:
 
-name="" # For functions with return values
+name="" \# For functions with return values
 
-# Description of the function
-# return-value name [--options] required-arguments [optional-arguments]
+\# Description of the function
+\# return-value name [--options] required-arguments [optional-arguments]
 function name() {
 code
 name=return-value
@@ -46,14 +46,12 @@ dostuffwith $name
 
 Variables:
 
-name="" # Define the variable.
+name="" \# Define the variable.
 
-name=value # Set the variable.
+name=value \# Set the variable.
 
 OR
 
-name=value # Define the variable and set it's initial value (use at the top of functions and files).
+name=value \# Define the variable and set it's initial value (use at the top of functions and files).
 
-$name # Use the variable.
-
-
+$name \# Use the variable.
