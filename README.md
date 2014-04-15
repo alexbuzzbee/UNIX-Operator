@@ -34,7 +34,6 @@ Functions:
 name="" # For functions with return values
 
 # Description of the function
-
 # return-value name [--options] required-arguments [optional-arguments]
 function name() {
 code
@@ -49,7 +48,6 @@ dostuffwith $name
 Variables:
 
 name="" # Define the variable.
-
 name=value # Set the variable.
 
 OR
