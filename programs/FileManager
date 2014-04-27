@@ -30,8 +30,7 @@ do
   "Directory listing")
     clear
     echo "Press <enter> to close this directory listing."
-    echo -n "Directory of "
-    pwd
+    echo -n "Directory of "; pwd; echo "."
     ls -la
     read trashcan
     break

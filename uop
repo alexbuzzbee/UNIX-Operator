@@ -29,8 +29,7 @@ function applyUpdate() {
     local updateConfirm="y"
     echo -n "Update version $uopVersion-$uopVersionPostfix to $updateVersion-$updatePostfix[Y,n]? "
     read updateConfirm
-    if test $updateConfirm = "y"
-    then
+    if test $updateConfirm != "n"; then
       cp -Rv ~/.uop/update/* ~/.uop
       rm -rv ~/.uop/update/*
       echo "Update complete. Quitting..."
@@ -67,7 +66,7 @@ function startup()
   installProgram
   echo "UOP startup"
   local selection=""
-  PS3="Make your selection[1,2]: "
+  PS3="Make your selection[1,2,3]: "
   local options=("Remote session" "Local session" "Help")
   select selection in "${options[@]}"
   do
