@@ -26,7 +26,7 @@ Style information
 
 Comments:
 
-'''bash
+'''
 # Category:
 
 # Information.
@@ -34,7 +34,7 @@ Comments:
 
 Functions:
 
-'''bash
+'''
 name="" # For functions with return values.
 
 # Description of the function.
@@ -52,7 +52,7 @@ dostuffwith $name
 
 Variables:
 
-'''bash
+'''
 name="" # Define the variable.
 name=value # Set the variable.
 
