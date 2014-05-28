@@ -136,14 +136,7 @@ function mainMenu()
 function UOPHelp()
 {
   clear
-  echo "UOP Help"
-  echo ""
-  echo "UOP (UNIX Operator) is a menu based control system for UNIX computers."
-  echo ""
-  echo "Usage Guide"
-  echo ""
-  echo "Menu selections"
-  echo "To make a menu selection, enter the selection number of the selection you would like to make and press enter/return."
+  less ~/.uop/help.txt
   echo "Press enter to continue..."
   read
 }
@@ -153,7 +146,7 @@ function UOPAbout()
 {
   clear
   source ~/.uop/version
-  echo "About UOP"
+  echo "About UNIX Operator"
   echo ""
   echo "UOP version $uopVersion-$uopVersionPostfix."
   echo "By Alex Martin and contributors."
@@ -193,7 +186,7 @@ function apps()
   echo ""
   local selection=""
   PS3="Make your selection[1,2,3]: "
-  local options=("UNIX Operator applications" "Command-line applications" "Back")
+  local options=("UNIX Operator applications >" "Command-line applications" "Back")
   select selection in "${options[@]}"
   do
     case $selection in

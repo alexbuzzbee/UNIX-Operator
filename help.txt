@@ -1,0 +1,8 @@
+UOP Help
+
+UOP (UNIX Operator) is a menu based control system for UNIX computers.
+
+Usage Guide
+
+Menu selections
+To make a menu selection, enter the selection number of the selection you would like to make and press enter/return.
