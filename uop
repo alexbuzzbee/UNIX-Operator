@@ -159,7 +159,7 @@ function UOPAbout()
   do
     case $selection in
      "View GPL")
-       less ~/.uop/gpl-3.0.txt
+       less ~/.uop/LICENSE
        break
      ;;
      "Credits")
