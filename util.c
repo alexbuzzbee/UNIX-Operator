@@ -65,7 +65,7 @@ char *util_loadFile(const char *path) {
 void util_viewFile(const char *name) { // Uses black magic to invoke less on a file.
   char cmd[128] = {'l', 'e', 's', 's', ' '};
   strcat(cmd, name);
-  system((const char *) cmd);
+  system((const char *) cmd); // This is the black magic part.
 }
 
 void clear() {
