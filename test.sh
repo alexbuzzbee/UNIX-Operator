@@ -1,6 +1,6 @@
 #/bin/bash
 
-uop < testscript.txt > output.txt
+./uop < testscript.txt > output.txt
 
 if cmp --silent expected.txt output.txt; then
   exit 0
