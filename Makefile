@@ -5,6 +5,9 @@ CCFLAGS = -std=gnu99
 LD = ${CC} # Using compiler as linker, for reasons of failed local builds.
 LDFLAGS = -o uop -lc
 
+test: uop
+	bash test.sh
+
 uop: main.o util.o
 	${LD} ${LDFLAGS} main.o util.o
 
