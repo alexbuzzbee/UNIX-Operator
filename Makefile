@@ -1,6 +1,10 @@
-CC = gcc
+ifndef CC
+	CC = gcc
+endif
 CCFLAGS = -std=gnu99
-LD = gcc
+ifndef LD
+	LD = ${CC} # Using compiler as linker, for... reasons.
+endif
 LDFLAGS = -o uop
 
 uop: main.o util.o
