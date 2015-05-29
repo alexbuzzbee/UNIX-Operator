@@ -1,0 +1,80 @@
+[H[2JUOP Help
+
+UOP (UNIX Operator) is a menu based control system for UNIX computers.
+
+Usage Guide
+
+Menu selections
+To make a menu selection, enter the selection number of the selection you would like to make and press enter/return.
+[H[2J[H[2JUNIX Operator Credits
+A successor to the Windix project (http://windix.programmingwave.com).
+
+Concept: Alex Martin
+Core programming: Alex Martin
+
+Additional programming
+
+Alex Martin
+
+GitHub administration: Alex Martin
+[H[2J[H[2J[H[2J[H[2J[H[2J[H[2JUOP main menu
+1. Help
+2. About >
+3. Applications >
+4. Exit
+Make a selection[1,2,3,4]: UOP main menu
+1. Help
+2. About >
+3. Applications >
+4. Exit
+Make a selection[1,2,3,4]: About UNIX Operator
+Version 0.2-dev by Alex Martin and GitHub contributors.
+Copyright (C) 2014 Alex Martin.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+---
+1. View GNU General Public License
+2. View credits
+3. Back
+Make a selection[1,2,3]: About UNIX Operator
+Version 0.2-dev by Alex Martin and GitHub contributors.
+Copyright (C) 2014 Alex Martin.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+---
+1. View GNU General Public License
+2. View credits
+3. Back
+Make a selection[1,2,3]: UOP main menu
+1. Help
+2. About >
+3. Applications >
+4. Exit
+Make a selection[1,2,3,4]: Applications
+1. UNIX Operator applications >
+2. Command-line applications >
+3. Back
+Make a selection[1,2,3]: Stub for UOP apps.
+UOP main menu
+1. Help
+2. About >
+3. Applications >
+4. Exit
+Make a selection[1,2,3,4]: About UNIX Operator
+Version 0.2-dev by Alex Martin and GitHub contributors.
+Copyright (C) 2014 Alex Martin.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+---
+1. View GNU General Public License
+2. View credits
+3. Back
+Make a selection[1,2,3]: UOP main menu
+1. Help
+2. About >
+3. Applications >
+4. Exit
+Make a selection[1,2,3,4]: 
