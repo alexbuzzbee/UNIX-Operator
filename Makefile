@@ -2,9 +2,7 @@ ifndef CC
 	CC = gcc
 endif
 CCFLAGS = -std=gnu99
-ifndef LD
-	LD = ${CC} # Using compiler as linker, for... reasons.
-endif
+LD = ${CC} # Using compiler as linker, for reasons of failed local builds.
 LDFLAGS = -o uop -lc
 
 uop: main.o util.o
