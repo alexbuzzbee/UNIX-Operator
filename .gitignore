@@ -1,3 +1,5 @@
 .DS_Store
 Unix Operator.chproj
-a.out
+*.o
+uop
+output.txt
