@@ -26,8 +26,9 @@ int mainMenu_opt_about();
 void mainMenu_opt_apps();
 void shutdown();
 
-void mainMenu_opt_help() {
+int mainMenu_opt_help() {
   util_viewFile("help.txt");
+  return 0;
 }
 
 int mainMenu_opt_about() {
@@ -35,7 +36,7 @@ int mainMenu_opt_about() {
   while(true) {
     clear();
     puts("About UNIX Operator");
-    puts("Version 0.2-dev by Alex Martin and GitHub contributors.");
+    puts("Version 0.3-dev by Alex Martin and GitHub contributors.");
     puts("Copyright (C) 2014 Alex Martin.");
     puts("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.");
     puts("---");
@@ -58,7 +59,19 @@ int mainMenu_opt_about() {
   }
 }
 
-void mainMenu_opt_apps() {
+int apps_opt_cmdline() {
+  char *cmd = (char *) ""
+  if (getenv("SHELL") == NULL) {
+    puts("Error: Shell not specified in current environment. Abort.")
+    return 1;
+  }
+  printf("Enter a command to execute using %s: ", getenv("SHELL"));
+  scanf("%[^\n]s", cmd);
+  system(cmd); // Actually not black magic, since executing a command using the current $SHELL is exactly what we want.
+  return 0;
+}
+
+int mainMenu_opt_apps() {
   int selection;
   clear();
   puts("Applications");
@@ -73,19 +86,19 @@ void mainMenu_opt_apps() {
       sleep(1);
       break;
     case 2:
-      puts("Stub for CLI apps.");
-      sleep(1);
+      apps_opt_cmdline();
       break;
     default:
       break;
   }
+  return 0;
 }
 
 void shutdown() {
   exit(0);
 }
 
-void mainMenu() {
+int mainMenu() {
   int selection;
   while(true) {
     clear();
@@ -114,6 +127,7 @@ void mainMenu() {
         break;
     }
   }
+  return 0;
 }
 
 int main(int argc, char *argv[]) {

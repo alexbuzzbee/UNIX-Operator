@@ -1,6 +1,6 @@
 About UNIX Operator
 
-UOP version 0.2-dev.
+UOP version 0.3-dev.
 By Alex Martin and contributors.
 Copyright (C) 2014 Alex Martin
 
