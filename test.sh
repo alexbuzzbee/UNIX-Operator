@@ -1,5 +1,7 @@
 #/bin/bash
 
+echo "In directory:"
+ls
 ./uop < testscript.txt > output.txt
 
 if cmp --silent expected.txt output.txt; then
