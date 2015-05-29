@@ -61,9 +61,9 @@ int mainMenu_opt_about() {
 }
 
 int apps_opt_cmdline() {
-  char *cmd = (char *) ""
+  char *cmd = (char *) "";
   if (getenv("SHELL") == NULL) {
-    puts("Error: Shell not specified in current environment. Abort.")
+    puts("Error: Shell not specified in current environment. Abort.");
     return 1;
   }
   printf("Enter a command to execute using %s: ", getenv("SHELL"));
