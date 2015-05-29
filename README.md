@@ -1,6 +1,8 @@
 UNIX-Operator
 =============
 
+https://travis-ci.org/alexbuzzbee/UNIX-Operator.svg?branch=C-port
+
 UNIX Operator is a menu-based control system for UNIX-like systems.
 
 [GitHub page](http://alexbuzzbee.github.io/UNIX-Operator)
