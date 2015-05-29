@@ -5,7 +5,7 @@ CCFLAGS = -std=gnu99
 ifndef LD
 	LD = ${CC} # Using compiler as linker, for... reasons.
 endif
-LDFLAGS = -o uop
+LDFLAGS = -o uop -lc
 
 uop: main.o util.o
 	${LD} ${LDFLAGS} main.o util.o
