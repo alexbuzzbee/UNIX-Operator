@@ -20,10 +20,11 @@
 #include <stdbool.h>
 #include "util.h"
 
-void mainMenu();
-void mainMenu_opt_help();
+int mainMenu();
+int mainMenu_opt_help();
 int mainMenu_opt_about();
-void mainMenu_opt_apps();
+int mainMenu_opt_apps();
+int apps_opt_cmdline();
 void shutdown();
 
 int mainMenu_opt_help() {
