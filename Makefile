@@ -11,7 +11,7 @@ test: uop
 	bash test.sh
 
 uop: main.o util.o
-	${LD} ${LDFLAGS} main.o util.o
+	${LD} ${LDFLAGS} main.o util.o menu.o
 
 main.o: main.c lib/util.h
 	${CC} ${CCFLAGS} -c main.c
