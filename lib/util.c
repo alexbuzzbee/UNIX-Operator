@@ -77,7 +77,8 @@ void util_viewFile(const char *name) { // Invokes the current $PAGER on a file.
     strcat((char *) &cmd, name);
     system((const char *) cmd);
   } else {
-    wait(&pid);
+    int status;
+    wait(&status);
   }
 }
 
@@ -94,7 +95,8 @@ void util_shellCmd(const char *command) { // Executes a shell command using the 
     strcat(cmd, "'");
     system((const char *) cmd);
   } else {
-    wait(&pid);
+    int status;
+    wait(&status);
   }
 }
 
@@ -105,6 +107,7 @@ void clear() {
   } else if (pid == -1) {
     system("clear"); // Backup black magic.
   } else {
-    wait(&pid);
+    int status;
+    wait(&status);
   }
 }
