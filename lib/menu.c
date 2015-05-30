@@ -25,7 +25,7 @@ int showMenu(char *prefix, char *title, char **options, size_t numOptions) {
   puts("---");
   puts(title);
   for (size_t i = 0; i < numOptions - 1; i++) {
-    printf("%i. %s\n", i+1, options[i]);
+    printf("%i. %s\n", (int) i+1, options[i]);
   }
   printf("Make a selection[1-%i]: ", (int) numOptions);
   scanf("%i", &selection);
