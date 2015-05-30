@@ -17,4 +17,4 @@ main.o: main.c util.h
 	${CC} ${CCFLAGS} -c main.c
 
 util.o: util.c
-	${CC} ${CCFLAGS} -c util.c
+	${CC} ${CCFLAGS} -c lib/util.c
