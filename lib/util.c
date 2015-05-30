@@ -73,7 +73,7 @@ void util_viewFile(const char *name) { // Uses black magic to invoke less on a f
 void clear() {
   int pid = fork();
   if (pid == 0) {
-    execlp("clear", "clear");
+    execlp("clear", "clear", (void *) NULL);
   } else if (pid == -1) {
     system("clear"); // Backup black magic.
   } else {
