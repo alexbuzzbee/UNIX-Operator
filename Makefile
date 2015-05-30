@@ -13,7 +13,7 @@ test: uop
 uop: main.o util.o
 	${LD} ${LDFLAGS} main.o util.o
 
-main.o: main.c util.h
+main.o: main.c lib/util.h
 	${CC} ${CCFLAGS} -c main.c
 
 util.o: util.c
