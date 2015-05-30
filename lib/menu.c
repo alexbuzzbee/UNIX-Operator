@@ -18,16 +18,16 @@
 #include "menu.h"
 #include "util.h"
 
-int showMenu(char *prefix, char *title, char **options, size_t numOptions) {
+int showMenu(char *prefix, char *title, char **options, int numOptions) {
   int selection;
   clear();
   puts(prefix);
   puts("---");
   puts(title);
-  for (size_t i = 0; i < numOptions - 1; i++) {
-    printf("%i. %s\n", (int) i+1, options[i]);
+  for (int i = 0; i < numOptions; i++) {
+    printf("%i. %s\n", i+1, options[i]);
   }
-  printf("Make a selection[1-%i]: ", (int) numOptions);
+  printf("Make a selection[1-%i]: ", numOptions);
   scanf("%i", &selection);
   return selection;
 }

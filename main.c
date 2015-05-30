@@ -34,10 +34,9 @@ int mainMenu_opt_help() {
 }
 
 int mainMenu_opt_about() {
-  int selection;
   const char *const opts[] = {"View GNU General Public License, Version 3", "View credits", "Back"};
   while(true) {
-    selection = showMenu("Version 0.3-dev by Alex Martin and GitHub contributors.\nCopyright (C) 2014 Alex Martin.\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\nUNIX Operator\nVersion 0.3-dev by Alex Martin and GitHub contributors\nCopyright (C) 2014 Alex Martin.", "About UNIX Operator", (char **) opts, sizeof(opts)/sizeof(opts[0]));
+    int selection = showMenu("Version 0.3-dev by Alex Martin and GitHub contributors.\nCopyright (C) 2014 Alex Martin.\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\nUNIX Operator\nVersion 0.3-dev by Alex Martin and GitHub contributors\nCopyright (C) 2014 Alex Martin.", "About UNIX Operator", (char **) opts, 3);
     switch(selection) {
       case 1:
         util_viewFile("gpl-3.0.txt");
@@ -53,21 +52,20 @@ int mainMenu_opt_about() {
 }
 
 int apps_opt_cmdline() {
-  char *cmd = (char *) "";
+  char cmd[128] = "";
   if (getenv("SHELL") == NULL) {
     puts("Error: Shell not specified in current environment. Abort.");
     return 1;
   }
   printf("Enter a command to execute using %s: ", getenv("SHELL"));
-  scanf("%[^\n]s", cmd);
-  system(cmd); // Actually not black magic, since executing a command using the current $SHELL is exactly what we want.
+  scanf(" %[^\n]", (char *) &cmd);
+  system((const char *) &cmd); // Actually not black magic, since executing a command using the current $SHELL is exactly what we want.
   return 0;
 }
 
 int mainMenu_opt_apps() {
-  int selection;
   const char *const opts[] = {"UNIX Operator applications >", "Command-line applications >", "Back"};
-  showMenu("", "Applications", (char **) opts, sizeof(opts)/sizeof(opts[0]));
+  int selection = showMenu("", "Applications", (char **) opts, 3);
   switch(selection) {
     case 1:
       puts("Stub for UOP apps.");
@@ -87,10 +85,9 @@ void shutdown() {
 }
 
 int mainMenu() {
-  int selection;
   const char *const opts[] = {"Help", "About >", "Applications >", "Exit"};
   while(true) {
-    selection = showMenu("", "UOP main menu", (char **) opts, sizeof(opts)/sizeof(opts[0]));
+    int selection = showMenu("", "UOP main menu", (char **) opts, 4);
     switch(selection) {
       case 1:
         mainMenu_opt_help();
