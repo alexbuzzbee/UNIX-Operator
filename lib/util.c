@@ -64,10 +64,35 @@ char *util_loadFile(const char *path) {
   return buff;
 }
 
-void util_viewFile(const char *name) { // Uses black magic to invoke less on a file.
-  char cmd[128] = {'l', 'e', 's', 's', ' '};
-  strcat(cmd, name);
-  system((const char *) cmd); // This is the black magic part.
+void util_viewFile(const char *name) { // Invokes the current $PAGER on a file.
+  char *pager = getenv("PAGER");
+  int pid = fork();
+  if (pid == 0) {
+    execlp(pager, pager, name, (void *) NULL);
+  } else if (pid == -1) { // Backup black magic.
+    char cmd[128] = {'l', 'e', 's', 's', ' '};
+    strcat(&cmd, &name);
+    system((const char *) cmd);
+  } else {
+    wait(&pid);
+  }
+}
+
+void util_shellCmd(const char *command) { // Executes a shell command using the current $SHELL.
+  char *shell = getenv("SHELL");
+  int pid = fork();
+  if (pid == 0) {
+    execlp(shell, shell, "-c", command, (void *) NULL);
+  } else if (pid == -1) { // Backup black magic, if fork() fails.
+    char *cmd;
+    strcat(cmd, shell);
+    strcat(cmd, " -c '");
+    strcat(cmd, command);
+    strcat(cmd, "'");
+    system((const char *) cmd);
+  } else {
+    wait(&pid);
+  }
 }
 
 void clear() {

@@ -59,7 +59,7 @@ int apps_opt_cmdline() {
   }
   printf("Enter a command to execute using %s: ", getenv("SHELL"));
   scanf(" %[^\n]", (char *) &cmd);
-  system((const char *) &cmd); // Actually not black magic, since executing a command using the current $SHELL is exactly what we want.
+  util_shellCmd(&cmd);
   return 0;
 }
 
