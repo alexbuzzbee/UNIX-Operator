@@ -1,6 +1,8 @@
 UNIX-Operator
 =============
 
+[![Build Status](https://travis-ci.org/alexbuzzbee/UNIX-Operator.svg?branch=C-port)](https://travis-ci.org/alexbuzzbee/UNIX-Operator)
+
 UNIX Operator is a menu-based control system for UNIX-like systems.
 
 [GitHub page](http://alexbuzzbee.github.io/UNIX-Operator)
@@ -10,8 +12,8 @@ UNIX Operator is under Fork and Pull. If you want to contribute to UNIX Operator
 GPL NOTICE
 ----------
 
-UNIX Operator version 0.15-dev, simple menu-based interface for UNIX systems.
-Copyright (C) 2014  Alex Martin
+UNIX Operator version 0.3-dev, simple menu-based interface for UNIX systems.
+Copyright (C) 2014 Alex Martin
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,45 +24,3 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
-Style information
------------------
-
-Comments:
-
-```bash
-# Category:
-
-# Information.
-```
-
-Functions:
-
-```bash
-name="" # For functions with return values.
-
-# Description of the function.
-# return-value name [--options] required-arguments [optional-arguments] (Optional)
-function name() {
-code
-name=return-value
-}
-
-function caller() {
-name required-arguments
-dostuffwith $name
-}
-```
-
-Variables:
-
-```bash
-name="" # Define the variable.
-name=value # Set the variable.
-
-OR
-
-name=value # Define the variable and set it's initial value (use at the top of functions and files).
-
-$name # Use the variable.
-```
