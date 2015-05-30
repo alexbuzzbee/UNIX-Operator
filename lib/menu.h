@@ -19,6 +19,6 @@
 
 #include <stddef.h>
 
-int showMenu(char **options, size_t numOptions);
+int showMenu(char *prefix, char *title, char **options, size_t numOptions);
 
 #endif
