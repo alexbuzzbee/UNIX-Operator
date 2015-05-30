@@ -71,7 +71,7 @@ void util_viewFile(const char *name) { // Invokes the current $PAGER on a file.
     execlp(pager, pager, name, (void *) NULL);
   } else if (pid == -1) { // Backup black magic.
     char cmd[128] = {'l', 'e', 's', 's', ' '};
-    strcat(&cmd, &name);
+    strcat((char *) &cmd, name);
     system((const char *) cmd);
   } else {
     wait(&pid);

@@ -3,3 +3,6 @@ Unix Operator.chproj
 *.o
 uop
 output.txt
+*.so
+# OS X's shared library extension. Just an SO really.
+*.dylib

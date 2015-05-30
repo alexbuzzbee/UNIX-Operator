@@ -59,7 +59,7 @@ int apps_opt_cmdline() {
   }
   printf("Enter a command to execute using %s: ", getenv("SHELL"));
   scanf(" %[^\n]", (char *) &cmd);
-  util_shellCmd(&cmd);
+  util_shellCmd((const char *) &cmd);
   return 0;
 }
 
