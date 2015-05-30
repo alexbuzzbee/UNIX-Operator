@@ -16,5 +16,8 @@ uop: main.o util.o
 main.o: main.c lib/util.h
 	${CC} ${CCFLAGS} -c main.c
 
-util.o: util.c
+util.o: lib/util.c
 	${CC} ${CCFLAGS} -c lib/util.c
+
+menu.o: lib/menu.c
+	${CC} ${CCFLAGS} -c lib/menu.c
