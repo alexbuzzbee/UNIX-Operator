@@ -18,7 +18,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "util.h"
+#include "lib/util.h"
 
 int mainMenu();
 int mainMenu_opt_help();

@@ -14,6 +14,11 @@
 //You should have received a copy of the GNU General Public License
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#ifndef UOP_UTIL_H
+#define UOP_UTIL_H
+
 char *util_loadFile(const char *path);
 void util_viewFile(const char *name);
 void clear();
+
+#endif
