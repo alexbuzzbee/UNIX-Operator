@@ -10,14 +10,14 @@ default: uop
 test: uop
 	bash test.sh
 
-uop: main.o util.o
-	${LD} ${LDFLAGS} main.o util.o menu.o
+uop: main.o lib/util.o lib/menu.o
+	${LD} ${LDFLAGS} main.o lib/util.o lib/menu.o
 
-main.o: main.c lib/util.h
+main.o: main.c lib/util.h lib/menu.h
 	${CC} ${CCFLAGS} -c main.c
 
-util.o: lib/util.c
-	${CC} ${CCFLAGS} -c lib/util.c
+lib/util.o: lib/util.c
+	${CC} ${CCFLAGS} -c lib/util.c -o lib/util.o
 
-menu.o: lib/menu.c
-	${CC} ${CCFLAGS} -c lib/menu.c
+lib/menu.o: lib/menu.c
+	${CC} ${CCFLAGS} -c lib/menu.c -o lib/menu.o
