@@ -19,6 +19,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "lib/util.h"
+#include "lib/menu.h"
 
 int mainMenu();
 int mainMenu_opt_help();
@@ -34,8 +35,9 @@ int mainMenu_opt_help() {
 
 int mainMenu_opt_about() {
   int selection;
+  const char *const opts[] = {"View GNU General Public License, Version 3", "View credits", "Back"};
   while(true) {
-    selection = showMenu("Version 0.3-dev by Alex Martin and GitHub contributors.\nCopyright (C) 2014 Alex Martin.\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\nUNIX Operator\nVersion 0.3-dev by Alex Martin and GitHub contributors\nCopyright (C) 2014 Alex Martin.", "About UNIX Operator", {"View GNU General Public License, Version 3", "View credits", "Back"});
+    selection = showMenu("Version 0.3-dev by Alex Martin and GitHub contributors.\nCopyright (C) 2014 Alex Martin.\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\nUNIX Operator\nVersion 0.3-dev by Alex Martin and GitHub contributors\nCopyright (C) 2014 Alex Martin.", "About UNIX Operator", opts);
     switch(selection) {
       case 1:
         util_viewFile("gpl-3.0.txt");
@@ -64,7 +66,8 @@ int apps_opt_cmdline() {
 
 int mainMenu_opt_apps() {
   int selection;
-  showMenu("", "Applications", {"UNIX Operator applications >", "Command-line applications >", "Back"});
+  const char *const opts[] = {"UNIX Operator applications >", "Command-line applications >", "Back"};
+  showMenu("", "Applications", opts);
   switch(selection) {
     case 1:
       puts("Stub for UOP apps.");
@@ -85,8 +88,9 @@ void shutdown() {
 
 int mainMenu() {
   int selection;
+  const char *const opts[] = {"Help", "About >", "Applications >", "Exit"};
   while(true) {
-    selection = showMenu("", "UOP main menu", {"Help", "About >", "Applications >", "Exit"});
+    selection = showMenu("", "UOP main menu", opts);
     switch(selection) {
       case 1:
         mainMenu_opt_help();
