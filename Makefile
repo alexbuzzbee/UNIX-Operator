@@ -30,7 +30,7 @@ libuop.dylib: lib/util.o lib/menu.o
 	${LD} ${LDFLAGS} -shared -o libuop.dylib
 
 main.o: main.c lib/util.h lib/menu.h
-	${CC} ${CCFLAGS} -c main.c
+	${CC} ${CCFLAGS} -c main.c -o main.o
 
 lib/util.o: lib/util.c
 	${CC} ${CCFLAGS} -c lib/util.c -o lib/util.o
