@@ -14,6 +14,7 @@
 //You should have received a copy of the GNU General Public License
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#include <stdio.h>
 #include "menu.h"
 #include "util.h"
 
@@ -26,7 +27,7 @@ int showMenu(char *prefix, char *title, char **options, size_t numOptions) {
   for (size_t i = 0; i < numOptions - 1; i++) {
     printf("%i. %s\n", i+1, options[i]);
   }
-  printf("Make a selection[1-%i]: ", numOptions);
+  printf("Make a selection[1-%i]: ", (int) numOptions);
   scanf("%i", &selection);
   return selection;
 }
