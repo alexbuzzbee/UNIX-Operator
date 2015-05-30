@@ -66,6 +66,9 @@ char *util_loadFile(const char *path) {
 
 void util_viewFile(const char *name) { // Invokes the current $PAGER on a file.
   char *pager = getenv("PAGER");
+  if (pager == NULL) {
+    pager = "less";
+  }
   int pid = fork();
   if (pid == 0) {
     execlp(pager, pager, name, (void *) NULL);
