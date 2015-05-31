@@ -13,7 +13,7 @@ else
 	SLIBEXT = so
 endif
 
-default: uop libuop
+default: uop libuop hello
 
 test: uop
 	bash test.sh
