@@ -2,6 +2,8 @@
 *.o
 uop
 !docs/bash/uop
+# The demo app
+hello
 output.txt
 *.so
 # OS X's shared library extension. Just an SO really.
