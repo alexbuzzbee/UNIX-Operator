@@ -53,11 +53,11 @@ int mainMenu_opt_about() {
 
 int apps_opt_cmdline() {
   char cmd[128] = "";
-  if (getenv("SHELL") == NULL) {
-    puts("Error: Shell not specified in current environment. Abort.");
-    return 1;
+  char *shell = getenv("SHELL");
+  if (shell == NULL) {
+    shell = "/bin/bash";
   }
-  printf("Enter a command to execute using %s: ", getenv("SHELL"));
+  printf("Enter a command to execute using %s: ", shell);
   scanf(" %[^\n]", (char *) &cmd);
   util_shellCmd((const char *) &cmd);
   return 0;

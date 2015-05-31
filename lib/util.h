@@ -18,8 +18,8 @@
 #define UOP_UTIL_H
 
 char *util_loadFile(const char *path);
-void util_viewFile(const char *name);
-void util_shellCmd(const char *command);
-void clear();
+int util_viewFile(const char *name);
+int util_shellCmd(const char *command);
+int clear();
 
 #endif

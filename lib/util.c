@@ -64,50 +64,49 @@ char *util_loadFile(const char *path) {
   return buff;
 }
 
-void util_viewFile(const char *name) { // Invokes the current $PAGER on a file.
+int util_viewFile(const char *name) { // Invokes the current $PAGER on a file.
   char *pager = getenv("PAGER");
   if (pager == NULL) {
-    pager = "less";
+    pager = "/bin/less";
   }
   int pid = fork();
   if (pid == 0) {
-    execlp(pager, pager, name, (void *) NULL);
+    execl(pager, pager, name, (void *) NULL);
   } else if (pid == -1) { // Backup black magic.
-    char cmd[128] = {'l', 'e', 's', 's', ' '};
-    strcat((char *) &cmd, name);
-    system((const char *) cmd);
+    return 1;
   } else {
     int status;
     wait(&status);
   }
+  return 0;
 }
 
-void util_shellCmd(const char *command) { // Executes a shell command using the current $SHELL.
+int util_shellCmd(const char *command) { // Executes a shell command using the current $SHELL.
   char *shell = getenv("SHELL");
+  if (shell == NULL) {
+    shell = "/bin/bash";
+  }
   int pid = fork();
   if (pid == 0) {
-    execlp(shell, shell, "-c", command, (void *) NULL);
+    execl(shell, shell, "-c", command, (void *) NULL);
   } else if (pid == -1) { // Backup black magic, if fork() fails.
-    char *cmd;
-    strcat(cmd, shell);
-    strcat(cmd, " -c '");
-    strcat(cmd, command);
-    strcat(cmd, "'");
-    system((const char *) cmd);
+    return 1;
   } else {
     int status;
     wait(&status);
   }
+  return 0;
 }
 
-void clear() {
+int clear() {
   int pid = fork();
   if (pid == 0) {
     execlp("clear", "clear", (void *) NULL);
   } else if (pid == -1) {
-    system("clear"); // Backup black magic.
+    return 1;
   } else {
     int status;
     wait(&status);
   }
+  return 0;
 }
