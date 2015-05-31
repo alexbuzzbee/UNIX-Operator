@@ -21,6 +21,9 @@ test: uop
 uop: main.o lib/util.o lib/menu.o
 	${LD} ${LDFLAGS} main.o lib/util.o lib/menu.o -o uop
 
+hello: apps/hello/main.o
+	${LD} ${LDFLAGS} apps/hello/main.o lib/util.o lib/menu.o -o hello # Because libuop is broken.
+
 libuop: libuop.${SLIBEXT}
 
 libuop.so: lib/util.o lib/menu.o
@@ -31,6 +34,9 @@ libuop.dylib: lib/util.o lib/menu.o
 
 main.o: main.c lib/util.h lib/menu.h
 	${CC} ${CCFLAGS} -c main.c -o main.o
+
+apps/hello/main.o: apps/hello/main.c lib/util.h lib/menu.h
+	${CC} ${CCFLAGS} -c apps/hello/main.c -o apps/hello/main.o
 
 lib/util.o: lib/util.c
 	${CC} ${CCFLAGS} -c lib/util.c -o lib/util.o
