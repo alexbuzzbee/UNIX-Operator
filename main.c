@@ -15,6 +15,7 @@
 //along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdio.h>
+#include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -53,13 +54,38 @@ int mainMenu_opt_about() {
 
 int apps_opt_cmdline() {
   char cmd[128] = "";
-  if (getenv("SHELL") == NULL) {
-    puts("Error: Shell not specified in current environment. Abort.");
-    return 1;
+  char *shell = getenv("SHELL");
+  if (shell == NULL) {
+    shell = "/bin/bash";
   }
-  printf("Enter a command to execute using %s: ", getenv("SHELL"));
+  printf("Enter a command to execute using %s: ", shell);
   scanf(" %[^\n]", (char *) &cmd);
   util_shellCmd((const char *) &cmd);
+  return 0;
+}
+
+int apps_opt_uop() {
+  char cwd[128] = "";
+  char app[128] = "";
+  getcwd((char *) &cwd, sizeof(cwd)/sizeof(cwd[0])); // Get the working directory.
+  char cmd[128] = "ls -l | egrep 'wx|-x' | grep -v '^d'"; // Checks execute permission bit on files (but not directories) in current directory.
+  util_shellCmd((char *) &cmd);
+  printf("Enter the name of an application to run: ");
+  scanf(" %[^\n]", (char *) &app);
+  int pid = fork(); // Fork/exec the application.
+  if (pid == 0) {
+    char path[128] = "";
+    strcat((char *) &path, (char *) &cwd);
+    strcat((char *) &path, "/"); // Acquire the application's absolute path.
+    strcat((char *) &path, (char *) &app);
+    printf("Running %s...", (char *) &path);
+    execl((char *) &path, (char *) &path, (void *) NULL); // Exec to the application.
+  } else if (pid == -1) {
+    return 1; // Error.
+  } else {
+    int status;
+    wait(&status);
+  }
   return 0;
 }
 
@@ -68,7 +94,7 @@ int mainMenu_opt_apps() {
   int selection = showMenu("", "Applications", (char **) opts, 3);
   switch(selection) {
     case 1:
-      puts("Stub for UOP apps.");
+      apps_opt_uop();
       sleep(1);
       break;
     case 2:
