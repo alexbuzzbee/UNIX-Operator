@@ -37,7 +37,7 @@ int mainMenu_opt_help() {
 int mainMenu_opt_about() {
   const char *const opts[] = {"View GNU General Public License, Version 3", "View credits", "Back"};
   while(true) {
-    int selection = showMenu("Version 0.3-dev by Alex Martin and GitHub contributors.\nCopyright (C) 2014 Alex Martin.\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\nUNIX Operator\nVersion 0.3-dev by Alex Martin and GitHub contributors\nCopyright (C) 2014 Alex Martin.", "About UNIX Operator", (char **) opts, 3);
+    int selection = showMenu("Version 0.3-dev by Alex Martin and GitHub contributors.\nCopyright (C) 2014 Alex Martin.\nThis program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\nUNIX Operator\nVersion 0.4-dev by Alex Martin and GitHub contributors\nCopyright (C) 2014 Alex Martin.", "About UNIX Operator", (char **) opts, 3);
     switch(selection) {
       case 1:
         util_viewFile("LICENSE");

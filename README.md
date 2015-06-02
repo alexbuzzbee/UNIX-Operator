@@ -12,7 +12,7 @@ UNIX Operator is under Fork and Pull. If you want to contribute to UNIX Operator
 GPL NOTICE
 ----------
 
-UNIX Operator version 0.3-dev, simple menu-based interface for UNIX systems.
+UNIX Operator version 0.4-dev, simple menu-based interface for UNIX systems.
 Copyright (C) 2014 Alex Martin
 
 This program is free software: you can redistribute it and/or modify
